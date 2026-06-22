@@ -7,14 +7,14 @@
 #!tag = 定位
 
 [Argument]
-coordinate = input,"112.557000,23.145000",tag=目标坐标,desc=格式 经度,纬度（经度在前 逗号分隔）可粘贴高德坐标拾取器结果
+coordinate = input,"112.557000,23.145000",tag=目标坐标,desc=格式 经度,纬度（经度在前 逗号分隔）使用WGS84经纬度坐标
 accuracy = input,"10",tag=定位精度,desc=误差范围(米) 默认10 值越小系统越信任
 altitude = input,"0",tag=海拔高度,desc=海拔(米) 默认0
 spread = input,"0",tag=散布半径,desc=多Wi-Fi散布基数(米) 0=不散布 >0散开提升置信度
 notify = switch,true,tag=成功通知,desc=改坐标成功时系统通知
 
 [Script]
-http-response ^https?:\/\/gs-loc(-cn)?\.apple\.com\/clls\/wloc script-path=wloc.js,requires-body=true,binary-body-mode=true,tag=WLOC定位伪装,timeout=10,argument=[{coordinate},{accuracy},{spread},{notify}],enable=true
+http-response ^https?:\/\/gs-loc(-cn)?\.apple\.com\/clls\/wloc script-path=https://raw.githubusercontent.com/Lexho1/_/refs/heads/main/Script/wloc.js,requires-body=true,binary-body-mode=true,tag=WLOC定位伪装,timeout=10,argument=[{coordinate},{accuracy},{spread},{notify}],enable=true
 
 [MitM]
 hostname = gs-loc.apple.com, gs-loc-cn.apple.com
